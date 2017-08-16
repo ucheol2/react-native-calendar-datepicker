@@ -95,7 +95,8 @@ export default class DaySelector extends Component {
           this.props.maxDate.diff(
             Moment(newFocus).startOf('month'), 'seconds') >= 0 &&
           this.props.minDate.diff(
-            Moment(newFocus).endOf('month'), 'seconds') <= 0;
+            Moment(newFocus).endOf('month'), 'seconds') <= 0 &&
+          (this.props.filterDate ? this.props.filterDate(Moment(newFocus)) : true);
 
         // If the threshold is met perform the necessary animations and updates,
         // and there is at least one valid date in the new focus perform the
@@ -162,7 +163,8 @@ export default class DaySelector extends Component {
       let week = result[result.length - 1];
       week[iterator.weekday()] = {
         valid: this.props.maxDate.diff(iterator, 'seconds') >= 0 &&
-               this.props.minDate.diff(iterator, 'seconds') <= 0,
+               this.props.minDate.diff(iterator, 'seconds') <= 0 &&
+               (this.props.filterDate ? this.props.filterDate(iterator) : true),
         date: iterator.date(),
         selected: props.selected && iterator.isSame(props.selected, 'day'),
         today: iterator.isSame(Moment(), 'day'),

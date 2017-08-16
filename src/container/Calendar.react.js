@@ -202,6 +202,7 @@ export default class Calendar extends Component {
               monthOffset={this.state.monthOffset}
               minDate={this.props.minDate}
               maxDate={this.props.maxDate}
+              filterDate={this.props.filterDate}
               // Control properties
               slideThreshold={this.props.slideThreshold}
               // Transfer the corresponding styling properties.
